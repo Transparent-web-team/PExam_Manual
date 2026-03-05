@@ -1,0 +1,384 @@
+/* ============================================================
+   RESPONSIVE.CSS — PTIT Exam
+   Breakpoints:
+     Mobile  : max-width 480px
+     Tablet  : max-width 768px
+     Desktop : min-width 769px (mặc định, không cần override)
+   ============================================================ */
+
+/* ============================================================
+   TABLET (≤ 768px)
+   ============================================================ */
+@media (max-width: 768px) {
+
+  /* ---------- CHUNG ---------- */
+  body {
+    font-size: 15px;
+  }
+
+  /* ---------- HEADER ---------- */
+  .app-header-inner {
+    grid-template-columns: auto 1fr auto;
+    padding: 10px 16px;
+    gap: 10px;
+  }
+
+  .app-title {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .app-logo {
+    height: 36px;
+  }
+
+  /* ---------- USER HOME ---------- */
+  .home-main {
+    padding: 16px 12px 60px;
+  }
+
+  .exam-list {
+    grid-template-columns: 1fr;
+  }
+
+  .filters-top-row {
+    flex-direction: column;
+  }
+
+  .filter-select-group {
+    flex-wrap: wrap;
+  }
+
+  /* ---------- EXAM TAKING ---------- */
+  .exam-main {
+    grid-template-columns: 1fr;
+    padding: 20px 12px 80px;
+    gap: 0;
+  }
+
+  /* Palette xuống dưới, bỏ sticky */
+  .question-palette {
+    position: static;
+    width: 100%;
+    margin-top: 32px;
+    order: 2;
+  }
+
+  .question-list {
+    order: 1;
+  }
+
+  .exam-title-header h2 {
+    font-size: 13px;
+  }
+
+  .exam-title-header span {
+    font-size: 11px;
+  }
+
+  .timer-box {
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+
+  /* ---------- EXAM RESULT ---------- */
+  .result-main {
+    padding: 24px 12px;
+    gap: 20px;
+  }
+
+  .result-summary {
+    padding: 24px 16px;
+  }
+
+  .score-circle {
+    width: 130px;
+    height: 130px;
+  }
+
+  .score-number {
+    font-size: 34px;
+  }
+
+  .stats-row {
+    gap: 10px;
+  }
+
+  .stat-box {
+    font-size: 13px;
+    padding: 10px 14px;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .action-buttons button {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .filter-bar {
+    gap: 8px;
+  }
+
+  /* ---------- ADMIN SIDEBAR ---------- */
+  .admin-body {
+    flex-direction: column;
+    height: auto;
+    overflow: auto;
+  }
+
+  .admin-sidebar {
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    border-right: none;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 10px 16px;
+  }
+
+  .admin-logo {
+    flex-direction: row;
+    border-bottom: none;
+    padding: 0;
+    gap: 10px;
+  }
+
+  .admin-logo h2 {
+    font-size: 15px;
+    margin-bottom: 0;
+  }
+
+  .admin-logo-img {
+    height: 32px;
+    margin-bottom: 0;
+  }
+
+  .admin-logo .badge {
+    display: none;
+  }
+
+  .admin-nav {
+    flex-direction: row;
+    padding: 0 8px;
+    gap: 4px;
+    flex: 1;
+    overflow-x: auto;
+  }
+
+  .nav-item {
+    white-space: nowrap;
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  .admin-bottom-nav {
+    border-top: none;
+    border-left: 1px solid #f0f0f0;
+    padding: 0 0 0 12px;
+  }
+
+  .btn-logout {
+    white-space: nowrap;
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+
+  /* ---------- ADMIN MAIN ---------- */
+  .admin-main {
+    overflow-y: auto;
+  }
+
+  .admin-topbar {
+    padding: 0 16px;
+    height: 56px;
+  }
+
+  .admin-topbar h1 {
+    font-size: 16px;
+  }
+
+  .admin-content-area {
+    padding: 16px 12px;
+  }
+
+  /* ---------- ADMIN DASHBOARD ---------- */
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .admin-card {
+    padding: 16px;
+  }
+
+  .admin-table th,
+  .admin-table td {
+    padding: 10px 8px;
+    font-size: 13px;
+  }
+
+  /* Ẩn bớt cột ít quan trọng trên bảng */
+  .admin-table th:nth-child(3),
+  .admin-table td:nth-child(3) {
+    display: none;
+  }
+
+  /* ---------- ADMIN EDIT EXAM ---------- */
+  .admin-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* ---------- CHART ---------- */
+  .chart-bars {
+    gap: 16px;
+    height: 180px;
+  }
+
+  .bar-col {
+    width: 40px;
+  }
+}
+
+
+/* ============================================================
+   MOBILE (≤ 480px)
+   ============================================================ */
+@media (max-width: 480px) {
+
+  /* ---------- HEADER ---------- */
+  .app-title {
+    font-size: 12px;
+  }
+
+  .btn-danger {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+
+  /* ---------- LOGIN / REGISTER ---------- */
+  .login-card {
+    padding: 20px 16px;
+    border-radius: 6px;
+  }
+
+  /* ---------- EXAM TAKING ---------- */
+  .question-num {
+    font-size: 16px;
+  }
+
+  .question-text {
+    font-size: 15px;
+  }
+
+  .option-label {
+    font-size: 14px;
+  }
+
+  /* Nút nộp bài full width */
+  #submit-btn {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+
+  .modal-content {
+    width: 90vw;
+    padding: 24px 20px;
+  }
+
+  /* ---------- PALETTE ---------- */
+  .palette-grid {
+    grid-template-columns: repeat(8, 1fr);
+  }
+
+  /* ---------- RESULT ---------- */
+  .score-circle {
+    width: 110px;
+    height: 110px;
+  }
+
+  .score-number {
+    font-size: 28px;
+  }
+
+  .stats-row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .stat-box {
+    width: 100%;
+    text-align: center;
+  }
+
+  .review-card {
+    padding: 16px;
+  }
+
+  .review-option {
+    font-size: 14px;
+    padding: 10px 12px;
+  }
+
+  /* ---------- ADMIN ---------- */
+  .admin-nav {
+    display: none; /* Ẩn nav trên mobile cực nhỏ, giữ logo + logout */
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Ẩn nhiều cột hơn trên bảng */
+  .admin-table th:nth-child(4),
+  .admin-table td:nth-child(4) {
+    display: none;
+  }
+
+  .card-header-flex {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .card-header-flex .card-actions,
+  .card-header-flex .filter-actions,
+  .card-header-flex .search-bar-admin {
+    width: 100%;
+  }
+
+  .admin-input {
+    width: 100%;
+  }
+
+  /* Pagination thu gọn */
+  .pagination {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .btn-page {
+    padding: 5px 8px;
+    font-size: 12px;
+  }
+
+  /* ---------- EXAM CARD ---------- */
+  .exam-card {
+    padding: 14px 14px 52px;
+  }
+
+  .exam-title {
+    font-size: 16px;
+  }
+
+  .exam-meta {
+    grid-template-columns: 1fr 1fr;
+    font-size: 12px;
+  }
+}
