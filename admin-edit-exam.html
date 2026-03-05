@@ -7,7 +7,7 @@
     <title>Tạo/Chỉnh sửa kỳ thi - PTIT Exam Admin</title>
     <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="stylesheet" href="assets/css/admin.css" />
-    <link rel="stylesheet" href="assets/css/responsive.css">
+    <link rel="stylesheet" href="assets/css/responsive.css" />
     <style>
         /* CSS cục bộ cho riêng trang edit form */
         .admin-grid {
@@ -90,6 +90,8 @@
 
 <body class="admin-body">
 
+  <div class="nav-overlay" id="nav-overlay" onclick="closeNav()"></div>
+
     <!-- ================= SIDEBAR ================= -->
     <aside class="admin-sidebar">
         <div class="admin-logo">
@@ -100,11 +102,11 @@
 
         <nav class="admin-nav">
             <a href="admin.html" class="nav-item">
-                Tổng quan
+                <img src="assets/icons/book-open.svg" alt="" class="nav-icon" /> Tổng quan
             </a>
             <!-- Active link ảo để user biết đang ở module nào -->
             <a href="#" class="nav-item active">
-                Quản lý Kỳ thi
+                <img src="assets/icons/calendar.svg" alt="" class="nav-icon" /> Quản lý Kỳ thi
             </a>
         </nav>
 
@@ -117,7 +119,10 @@
     <main class="admin-main">
 
         <header class="admin-topbar">
-            <div class="topbar-left">
+            <div class="topbar-left" style="display:flex;align-items:center;gap:8px;">
+                <button class="btn-hamburger" onclick="openNav()" aria-label="Mở menu">
+                  <span></span><span></span><span></span>
+                </button>
                 <h1 id="page-title-display">Biên tập Kỳ thi</h1>
             </div>
             <div class="topbar-right">
@@ -239,7 +244,21 @@
         </div>
     </main>
 
+    <style>
+      .btn-hamburger { display: none; }
+      @media (max-width: 480px) {
+        .btn-hamburger { display: flex; }
+      }
+    </style>
     <script>
+        function openNav() {
+          document.querySelector('.admin-nav').classList.add('open');
+          document.getElementById('nav-overlay').classList.add('open');
+        }
+        function closeNav() {
+          document.querySelector('.admin-nav').classList.remove('open');
+          document.getElementById('nav-overlay').classList.remove('open');
+        }
         function saveExam() {
             alert("Đã lưu thông tin kỳ thi thành công!");
             window.location.href = 'admin.html';
@@ -250,20 +269,13 @@
         function addQuestion() {
             alert("Mở popup thêm câu hỏi thủ công...");
         }
-        // Gắn tổng số mock ban đầu
         document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("q-count").textContent = "50";
         });
-
-        // Ẩn / Hiện thời gian bắt đầu và kết thúc khi chọn "Kỳ thi tự do"
         function toggleTimeSettings() {
             const isFree = document.getElementById("exam-free").checked;
             const timeBox = document.getElementById("time-settings");
-            if (isFree) {
-                timeBox.style.display = 'none';
-            } else {
-                timeBox.style.display = 'grid'; // .form-row vốn là display: grid
-            }
+            timeBox.style.display = isFree ? 'none' : 'grid';
         }
     </script>
 </body>

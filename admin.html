@@ -14,6 +14,9 @@
 
 <body class="admin-body">
 
+  <!-- Lớp phủ tối khi mở drawer trên mobile -->
+  <div class="nav-overlay" id="nav-overlay" onclick="closeNav()"></div>
+
   <!-- ================= SIDEBAR ================= -->
   <aside class="admin-sidebar">
     <div class="admin-logo">
@@ -38,7 +41,11 @@
 
     <!-- Topbar chung cho Admin -->
     <header class="admin-topbar">
-      <div class="topbar-left">
+      <div class="topbar-left" style="display:flex;align-items:center;gap:8px;">
+        <!-- Nút hamburger chỉ hiện trên mobile -->
+        <button class="btn-hamburger" id="btn-hamburger" onclick="openNav()" aria-label="Mở menu">
+          <span></span><span></span><span></span>
+        </button>
         <h1 id="page-title-display">Tổng quan hệ thống</h1>
       </div>
       <div class="topbar-right">
@@ -161,25 +168,25 @@
               <tr>
                 <td>B21DCCN001</td>
                 <td>Nguyễn Văn A</td>
-                <td><strong style="color:#d0200d">9.5</strong></td>
+                <td><strong style="color:var(--ptit-red)">9.5</strong></td>
                 <td>45 phút</td>
               </tr>
               <tr>
                 <td>B21DCCN023</td>
                 <td>Trần Thị B</td>
-                <td><strong style="color:#d0200d">9.0</strong></td>
+                <td><strong style="color:var(--ptit-red)">9.0</strong></td>
                 <td>48 phút</td>
               </tr>
               <tr>
                 <td>B21DCCN105</td>
                 <td>Lê Hoàng C</td>
-                <td><strong style="color:#d0200d">8.8</strong></td>
+                <td><strong style="color:var(--ptit-red)">8.8</strong></td>
                 <td>50 phút</td>
               </tr>
               <tr>
                 <td>B21DCCN442</td>
                 <td>Phạm Quyết D</td>
-                <td><strong style="color:#d0200d">8.5</strong></td>
+                <td><strong style="color:var(--ptit-red)">8.5</strong></td>
                 <td>55 phút</td>
               </tr>
             </tbody>
@@ -313,7 +320,23 @@
     </div>
   </main>
 
+  <style>
+    /* Nút hamburger chỉ hiện trên mobile */
+    .btn-hamburger { display: none; }
+    @media (max-width: 480px) {
+      .btn-hamburger { display: flex; }
+    }
+  </style>
   <script>
+    function openNav() {
+      document.querySelector('.admin-nav').classList.add('open');
+      document.getElementById('nav-overlay').classList.add('open');
+    }
+    function closeNav() {
+      document.querySelector('.admin-nav').classList.remove('open');
+      document.getElementById('nav-overlay').classList.remove('open');
+    }
+
     const pageTitles = {
       'dashboard': 'Tổng quan hệ thống',
       'statistics': 'Báo cáo Thống kê',
@@ -321,16 +344,12 @@
     };
 
     function showPage(pageId) {
-      // Đổi nội dung
       document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
       document.getElementById(pageId).classList.add('active');
-
-      // Đổi menu logic
       document.querySelectorAll('.nav-item').forEach(link => link.classList.remove('active'));
       document.getElementById('link-' + pageId).classList.add('active');
-
-      // Đổi tiêu đề Topbar
       document.getElementById('page-title-display').textContent = pageTitles[pageId];
+      closeNav(); // Tự đóng drawer sau khi chọn trang
     }
 
     function filterStudents() {
@@ -338,12 +357,8 @@
       const rows = document.querySelectorAll('.student-row');
       const noResultRow = document.getElementById('no-result-row');
       let hasVisibleRow = false;
-
       rows.forEach(row => {
-        // Lấy toàn bộ text của dòng hiện tại (bao gồm cả mã SV, tên, lớp)
         const rowText = row.innerText.toLowerCase();
-
-        // Kiểm tra xem input có nằm trong các chữ của dòng không
         if (rowText.includes(input)) {
           row.style.display = '';
           hasVisibleRow = true;
@@ -351,23 +366,13 @@
           row.style.display = 'none';
         }
       });
-
-      // Hiển thị dòng thông báo "Không tìm thấy" nếu không có dòng nào hiển thị
-      if (hasVisibleRow) {
-        noResultRow.style.display = 'none';
-      } else {
-        noResultRow.style.display = '';
-      }
+      noResultRow.style.display = hasVisibleRow ? 'none' : '';
     }
 
-    // Hiển thị bảng Xem điểm
     function showStudentResult(studentId, studentName) {
       document.getElementById('resultArea').style.display = 'block';
       document.getElementById('resultArea').scrollIntoView({ behavior: 'smooth' });
-
-      // Update thông tin Header của bảng
-      const headerTitle = document.querySelector('#resultArea h3');
-      headerTitle.textContent = `Hồ sơ: ${studentName} (${studentId})`;
+      document.querySelector('#resultArea h3').textContent = `Hồ sơ: ${studentName} (${studentId})`;
     }
   </script>
 </body>
