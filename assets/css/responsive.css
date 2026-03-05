@@ -243,3 +243,26 @@
   .exam-title { font-size: 16px; }
   .exam-meta  { grid-template-columns: 1fr 1fr; font-size: 12px; }
 }
+
+/* ============================================================
+   FIX: Nút đăng xuất luôn hiển thị trong drawer mobile
+   ============================================================ */
+@media (max-width: 768px) {
+  /* Bỏ flex: 1 để nav không chiếm hết chiều cao drawer */
+  .admin-sidebar .admin-nav {
+    flex: 0 0 auto;
+  }
+
+  /* Đẩy logout xuống đáy drawer bằng margin-top: auto */
+  .admin-sidebar .admin-bottom-nav {
+    margin-top: auto;
+    border-top: 1px solid #f0f0f0;
+    padding: 16px;
+  }
+
+  .admin-sidebar .btn-logout {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+  }
+}
