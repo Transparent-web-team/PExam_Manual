@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hệ thống thi trắc nghiệm trực tuyến PTIT</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <script src="assets/js/login.js" defer></script>
+</head>
+
+<body>
+  <header class="hero" role="banner">
+    <div class="hero-inner">
+      <img src="assets/backgroundptit.webp" alt="Học viện Công nghệ Bưu chính Viễn thông" class="hero-banner" />
+    </div>
+  </header>
+
+  <main>
+    <section class="page-title">
+      <h1>HỆ THỐNG THI TRẮC NGHIỆM TRỰC TUYẾN PTIT</h1>
+    </section>
+
+    <section class="login-section" aria-labelledby="login-heading">
+      <div class="login-card">
+        <h2 id="login-heading">Đăng nhập</h2>
+        <form class="login-form" id="user-login-form">
+          <div class="form-group">
+            <label for="username">Tên đăng nhập</label>
+            <input type="text" id="username" name="username" placeholder="Nhập tên đăng nhập" required />
+          </div>
+          <div class="form-group">
+            <label for="password">Mật khẩu</label>
+            <input type="password" id="password" name="password" placeholder="Nhập mật khẩu" required />
+          </div>
+          <button type="submit" class="btn-primary">Đăng nhập</button>
+        </form>
+        <p class="register-text">
+          Chưa có tài khoản?
+          <a href="register.html" class="register-link">Đăng ký</a>
+        </p>
+        <p class="register-text">
+          <a href="admin-login.html" class="register-link">Đăng nhập Admin</a>
+        </p>
+      </div>
+    </section>
+  </main>
+</body>
+
+</html>

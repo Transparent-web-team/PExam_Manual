@@ -1,0 +1,244 @@
+/* exam.css - Code tối giản, chuyên nghiệp */
+
+/* Header giữ nguyên vị trí trên cùng */
+.exam-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: #ffffff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+}
+
+.exam-title-header {
+  margin-left: 16px;
+  border-left: 2px solid #e0e0e0;
+  padding-left: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.exam-title-header h2 {
+  font-size: 15px;
+  color: #333;
+  margin-bottom: 2px;
+}
+
+.exam-title-header span {
+  font-size: 12px;
+  color: #777;
+}
+
+.exam-header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-left: auto;
+  /* Đẩy sát rạt sang phải */
+}
+
+.timer-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff8eb;
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 1px solid #ffcc80;
+  color: #d0200d;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.timer-icon {
+  width: 18px;
+  height: 18px;
+}
+
+/* Bố cục chính: Dùng Grid ép 2 cột tĩnh, KHÔNG bao giờ rơi dòng */
+.exam-main {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 40px;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 30px 20px 80px;
+}
+
+/* ================== Cột trái (Danh sách câu hỏi) ================== */
+.question-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.question-item {
+  padding: 30px 0;
+  border-bottom: 1px solid #e0e0e0;
+  scroll-margin-top: 90px;
+  /* Bù header khi ấn cuộn */
+}
+
+.question-item:last-child {
+  border-bottom: none;
+}
+
+.question-num {
+  font-size: 18px;
+  font-weight: 700;
+  color: #d0200d;
+  margin-bottom: 12px;
+}
+
+.question-text {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  color: #222;
+  font-weight: 500;
+}
+
+.options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.option-label {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+  font-size: 15px;
+  color: #333;
+  padding: 8px;
+  border-radius: 6px;
+}
+
+.option-label:hover {
+  background-color: #f5f8ff;
+}
+
+.option-label input[type="radio"] {
+  margin-top: 3px;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: #0ca61e;
+  flex-shrink: 0;
+}
+
+.option-letter {
+  font-weight: 700;
+  font-size: 14px;
+  color: #555;
+  width: 20px;
+  flex-shrink: 0;
+}
+
+/* ================== Cột phải (Palette cố định) ================== */
+.question-palette {
+  width: 280px;
+  flex-shrink: 0;
+  align-self: flex-start;
+  position: sticky;
+  top: 90px;
+  background: #fdfdfd;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 24px;
+}
+
+.question-palette h3 {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #eee;
+  color: #333;
+}
+
+.palette-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.palette-btn {
+  aspect-ratio: 1;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #444;
+}
+
+.palette-btn:hover {
+  background-color: #f0f4f8;
+  border-color: #888;
+}
+
+.palette-btn.answered {
+  background-color: #0ca61e;
+  color: #fff;
+  border-color: #0ca61e;
+}
+
+.palette-btn.marked {
+  background-color: #ff9800;
+  /* Màu cam nổi bật */
+  color: #fff;
+  border-color: #ff9800;
+}
+
+.palette-summary {
+  font-size: 14px;
+  color: #555;
+  border-top: 1px solid #eee;
+  padding-top: 16px;
+  text-align: center;
+}
+
+/* Thông báo Nộp bài */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal-overlay.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 40px;
+  border: 2px solid #d0200d;
+  width: 400px;
+  text-align: center;
+  box-shadow: none;
+}
+
+.modal-content h3 {
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+
+.modal-content p {
+  margin-bottom: 28px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}

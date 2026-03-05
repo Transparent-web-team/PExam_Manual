@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Đăng nhập quản trị viên - PTIT</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body>
+  <header class="hero" role="banner">
+    <div class="hero-inner">
+      <img src="assets/backgroundptit.webp" alt="Học viện Công nghệ Bưu chính Viễn thông" class="hero-banner" />
+    </div>
+  </header>
+
+  <main>
+    <section class="page-title">
+      <h1>HỆ THỐNG THI TRẮC NGHIỆM TRỰC TUYẾN PTIT</h1>
+    </section>
+
+    <section class="login-section" aria-labelledby="admin-login-heading">
+      <div class="login-card">
+        <h2 id="admin-login-heading">Đăng nhập quản trị viên</h2>
+        <form class="login-form" id="admin-login-form">
+          <div class="form-group">
+            <label for="admin-username">Tên đăng nhập</label>
+            <input type="text" id="admin-username" name="username" placeholder="Nhập tên đăng nhập" required />
+          </div>
+          <div class="form-group">
+            <label for="admin-password">Mật khẩu</label>
+            <input type="password" id="admin-password" name="password" placeholder="Nhập mật khẩu" required />
+          </div>
+          <button type="submit" class="btn-primary">Đăng nhập</button>
+        </form>
+        <p class="register-text">
+          <a href="index.html" class="register-link">Quay lại trang Đăng nhập Sinh viên</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    document.getElementById("admin-login-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const username = document.getElementById("admin-username").value.trim();
+      const password = document.getElementById("admin-password").value.trim();
+      if (username === "admin" && password === "admin123") {
+        sessionStorage.setItem("currentUser", JSON.stringify({ username: "admin", role: "admin" }));
+        alert("Đăng nhập bằng quyền Quản trị viên thành công!");
+        window.location.href = "admin.html";
+      } else {
+        alert("Tên đăng nhập hoặc mật khẩu không đúng.\n\nTài khoản admin:\n- admin / admin123");
+      }
+    });
+  </script>
+</body>
+
+</html>

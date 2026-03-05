@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trang Quản Trị - PTIT Exam</title>
+  <!-- Link chung CSS của hệ thống trước -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <!-- Link CSS dành riêng cho Admin -->
+  <link rel="stylesheet" href="assets/css/admin.css">
+</head>
+
+<body class="admin-body">
+
+  <!-- ================= SIDEBAR ================= -->
+  <aside class="admin-sidebar">
+    <div class="admin-logo">
+      <img src="assets/logoptit.png" alt="Logo PTIT" class="admin-logo-img" />
+      <h2>PTIT EXAM</h2>
+      <span class="badge badge--red-outline">Admin Panel</span>
+    </div>
+
+    <nav class="admin-nav">
+      <a href="#" onclick="showPage('dashboard')" class="nav-item active" id="link-dashboard">Tổng quan</a>
+      <a href="#" onclick="showPage('statistics')" class="nav-item" id="link-statistics">Thống kê</a>
+      <a href="#" onclick="showPage('results')" class="nav-item" id="link-results">Quản lý Sinh viên</a>
+    </nav>
+
+    <div class="admin-bottom-nav">
+      <button class="btn-logout" onclick="window.location.href='index.html'">Đăng xuất</button>
+    </div>
+  </aside>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main class="admin-main">
+
+    <!-- Topbar chung cho Admin -->
+    <header class="admin-topbar">
+      <div class="topbar-left">
+        <h1 id="page-title-display">Tổng quan hệ thống</h1>
+      </div>
+      <div class="topbar-right">
+        <!-- Đã ẩn avatar, thông tin rườm rà theo yêu cầu của người dùng -->
+      </div>
+    </header>
+
+    <div class="admin-content-area">
+
+      <!-- 1. DASHBOARD -->
+      <section id="dashboard" class="page-section active">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-info">
+              <h3>Tổng số Kỳ thi</h3>
+              <p>24</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-info">
+              <h3>Sinh viên Online</h3>
+              <p>156</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-info">
+              <h3>Bài thi đã nộp</h3>
+              <p>1,042</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-card mt-24">
+          <div class="card-header-flex">
+            <h2>Kỳ thi sắp diễn ra</h2>
+            <button class="btn-secondary" onclick="window.location.href='admin-edit-exam.html'">+ Tạo kỳ thi
+              mới</button>
+          </div>
+
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Tên kỳ thi</th>
+                <th>Loại</th>
+                <th>Thời gian bắt đầu</th>
+                <th>Số lượng đề</th>
+                <th>Hành động</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Thi giữa kỳ - Lập trình Web</td>
+                <td><span class="badge badge--yellow">Giữa kỳ</span></td>
+                <td>10/03/2026 09:00</td>
+                <td>50 câu</td>
+                <td><button class="btn-text" onclick="window.location.href='admin-edit-exam.html'">Chỉnh sửa</button>
+                </td>
+              </tr>
+              <tr>
+                <td>Thi cuối kỳ - Lập trình Web</td>
+                <td><span class="badge badge--red-outline">Cuối kỳ</span></td>
+                <td>10/05/2026 09:00</td>
+                <td>100 câu</td>
+                <td><button class="btn-text" onclick="window.location.href='admin-edit-exam.html'">Chỉnh sửa</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 2. THỐNG KÊ -->
+      <section id="statistics" class="page-section">
+        <div class="admin-card">
+          <div class="card-header-flex">
+            <h2>Báo cáo phổ điểm & Kết quả</h2>
+            <div class="filter-actions">
+              <select class="admin-select">
+                <option>Tất cả kỳ thi</option>
+                <option>Lập trình Web</option>
+              </select>
+              <button class="btn-secondary" onclick="alert('Đang xuất PDF...')">Xuất PDF</button>
+              <button class="btn-secondary" onclick="alert('Đang xuất Excel...')">Xuất
+                Excel</button>
+            </div>
+          </div>
+
+          <div class="chart-mockup">
+            <h4>Phân phối điểm số (Mô phỏng)</h4>
+            <div class="chart-bars">
+              <div class="bar-col">
+                <div class="bar-fill bad" style="height: 15%;"></div><span>0-4</span>
+              </div>
+              <div class="bar-col">
+                <div class="bar-fill avg" style="height: 35%;"></div><span>5-6</span>
+              </div>
+              <div class="bar-col">
+                <div class="bar-fill good" style="height: 60%;"></div><span>7-8</span>
+              </div>
+              <div class="bar-col">
+                <div class="bar-fill exc" style="height: 25%;"></div><span>9-10</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- THÊM MỚI: Danh sách sinh viên nổi bật (Thống kê) -->
+        <div class="admin-card mt-24">
+          <h2>Top Sinh viên xuất sắc (Lập trình Web)</h2>
+          <table class="admin-table mt-16">
+            <thead>
+              <tr>
+                <th>Mã SV</th>
+                <th>Họ và Tên</th>
+                <th>Điểm số</th>
+                <th>Thời gian nộp</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>B21DCCN001</td>
+                <td>Nguyễn Văn A</td>
+                <td><strong style="color:#d0200d">9.5</strong></td>
+                <td>45 phút</td>
+              </tr>
+              <tr>
+                <td>B21DCCN023</td>
+                <td>Trần Thị B</td>
+                <td><strong style="color:#d0200d">9.0</strong></td>
+                <td>48 phút</td>
+              </tr>
+              <tr>
+                <td>B21DCCN105</td>
+                <td>Lê Hoàng C</td>
+                <td><strong style="color:#d0200d">8.8</strong></td>
+                <td>50 phút</td>
+              </tr>
+              <tr>
+                <td>B21DCCN442</td>
+                <td>Phạm Quyết D</td>
+                <td><strong style="color:#d0200d">8.5</strong></td>
+                <td>55 phút</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="pagination">
+            <button class="btn-page" disabled>&laquo; Trước</button>
+            <button class="btn-page active">1</button>
+            <button class="btn-page">2</button>
+            <button class="btn-page">3</button>
+            <button class="btn-page">Sau &raquo;</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. QUẢN LÝ SINH VIÊN -->
+      <section id="results" class="page-section">
+
+        <div class="admin-card mb-24">
+          <div class="card-header-flex">
+            <h2>Danh sách Sinh viên</h2>
+            <div class="search-bar-admin">
+              <input type="text" id="searchInput" class="admin-input" placeholder="Tìm theo Mã SV, Tên, Lớp..."
+                onkeyup="filterStudents()">
+            </div>
+          </div>
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Mã SV</th>
+                <th>Họ & Tên</th>
+                <th>Lớp</th>
+                <th>Trạng thái hoạt động</th>
+                <th>Hành động</th>
+              </tr>
+            </thead>
+            <tbody id="student-table-body">
+              <tr class="student-row">
+                <td>B21DCCN001</td>
+                <td>Nguyễn Văn A</td>
+                <td>D21CQCN01-B</td>
+                <td><span class="badge badge--green-outline">Đang hoạt động</span></td>
+                <td><button class="btn-text" onclick="showStudentResult('B21DCCN001', 'Nguyễn Văn A')">Xem điểm</button>
+                </td>
+              </tr>
+              <tr class="student-row">
+                <td>B21DCCN002</td>
+                <td>Trần Văn B</td>
+                <td>D21CQCN01-B</td>
+                <td><span class="badge badge--green-outline">Đang hoạt động</span></td>
+                <td><button class="btn-text" onclick="showStudentResult('B21DCCN002', 'Trần Văn B')">Xem điểm</button>
+                </td>
+              </tr>
+              <tr class="student-row">
+                <td>B21DCCN003</td>
+                <td>Phạm Thị C</td>
+                <td>D21CQCN02-B</td>
+                <td><span class="badge badge--orange-outline">Bị khóa tạm thời</span></td>
+                <td><button class="btn-text">Mở khóa</button></td>
+              </tr>
+              <tr class="student-row">
+                <td>B21DCCN004</td>
+                <td>Lê Duy D</td>
+                <td>D21CQCN03-B</td>
+                <td><span class="badge badge--green-outline">Đang hoạt động</span></td>
+                <td><button class="btn-text" onclick="showStudentResult('B21DCCN004', 'Lê Duy D')">Xem điểm</button>
+                </td>
+              </tr>
+              <tr class="student-row">
+                <td>B21DCCN005</td>
+                <td>Hoàng Tuấn E</td>
+                <td>D21CQCN01-B</td>
+                <td><span class="badge badge--green-outline">Đang hoạt động</span></td>
+                <td><button class="btn-text" onclick="showStudentResult('B21DCCN005', 'Hoàng Tuấn E')">Xem điểm</button>
+                </td>
+              </tr>
+              <!-- Thông báo khi không tìm thấy ai -->
+              <tr id="no-result-row" style="display: none;">
+                <td colspan="5" style="text-align: center; color: #777; padding: 24px;">Không tìm thấy sinh viên nào phù
+                  hợp</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="pagination">
+            <button class="btn-page" disabled>&laquo; Trước</button>
+            <button class="btn-page active">1</button>
+            <button class="btn-page">2</button>
+            <button class="btn-page">3</button>
+            <button class="btn-page">...</button>
+            <button class="btn-page">10</button>
+            <button class="btn-page">Sau &raquo;</button>
+          </div>
+        </div>
+
+        <div id="resultArea" style="display:none;" class="mt-24">
+          <div class="admin-card">
+            <h3 style="margin-bottom:16px; color:#d0200d;">Hồ sơ: Nguyễn Văn A (B21DCCN001)</h3>
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Kỳ thi</th>
+                  <th>Điểm số</th>
+                  <th>Tình trạng</th>
+                  <th>Chi tiết bài làm</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Luyện tập HTML & CSS cơ bản</td>
+                  <td><strong>8.0/10</strong></td>
+                  <td><span class="badge badge--green-outline">Hoàn thành</span></td>
+                  <td><button class="btn-text">Xem chi tiết</button></td>
+                </tr>
+                <tr>
+                  <td>Kiểm tra Thường xuyên - Javascript</td>
+                  <td><strong>9.5/10</strong></td>
+                  <td><span class="badge badge--green-outline">Hoàn thành</span></td>
+                  <td><button class="btn-text">Xem chi tiết</button></td>
+                </tr>
+                <tr>
+                  <td>Thi giữa kỳ - Lập trình Web</td>
+                  <td>-</td>
+                  <td><span class="badge badge--orange-outline">Chưa khả dụng</span></td>
+                  <td>-</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script>
+    const pageTitles = {
+      'dashboard': 'Tổng quan hệ thống',
+      'statistics': 'Báo cáo Thống kê',
+      'results': 'Quản lý Sinh viên & Kết quả'
+    };
+
+    function showPage(pageId) {
+      // Đổi nội dung
+      document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(pageId).classList.add('active');
+
+      // Đổi menu logic
+      document.querySelectorAll('.nav-item').forEach(link => link.classList.remove('active'));
+      document.getElementById('link-' + pageId).classList.add('active');
+
+      // Đổi tiêu đề Topbar
+      document.getElementById('page-title-display').textContent = pageTitles[pageId];
+    }
+
+    function filterStudents() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const rows = document.querySelectorAll('.student-row');
+      const noResultRow = document.getElementById('no-result-row');
+      let hasVisibleRow = false;
+
+      rows.forEach(row => {
+        // Lấy toàn bộ text của dòng hiện tại (bao gồm cả mã SV, tên, lớp)
+        const rowText = row.innerText.toLowerCase();
+
+        // Kiểm tra xem input có nằm trong các chữ của dòng không
+        if (rowText.includes(input)) {
+          row.style.display = '';
+          hasVisibleRow = true;
+        } else {
+          row.style.display = 'none';
+        }
+      });
+
+      // Hiển thị dòng thông báo "Không tìm thấy" nếu không có dòng nào hiển thị
+      if (hasVisibleRow) {
+        noResultRow.style.display = 'none';
+      } else {
+        noResultRow.style.display = '';
+      }
+    }
+
+    // Hiển thị bảng Xem điểm
+    function showStudentResult(studentId, studentName) {
+      document.getElementById('resultArea').style.display = 'block';
+      document.getElementById('resultArea').scrollIntoView({ behavior: 'smooth' });
+
+      // Update thông tin Header của bảng
+      const headerTitle = document.querySelector('#resultArea h3');
+      headerTitle.textContent = `Hồ sơ: ${studentName} (${studentId})`;
+    }
+  </script>
+</body>
+
+</html>

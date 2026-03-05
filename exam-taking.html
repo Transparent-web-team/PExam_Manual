@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Làm bài thi - Hệ thống thi trắc nghiệm PTIT</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/exam.css" />
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="app-header exam-header">
+        <div class="app-header-inner">
+            <div class="app-header-left">
+                <img src="assets/logoptit.png" alt="Logo PTIT" class="app-logo" />
+                <div class="exam-title-header">
+                    <h2>Luyện tập HTML &amp; CSS cơ bản</h2>
+                    <span>Thí sinh: Nguyễn Văn A (B21DCCN001)</span>
+                </div>
+            </div>
+            <div class="exam-header-right">
+                <div class="timer-box">
+                    <img src="assets/icons/clock.svg" alt="" class="timer-icon" />
+                    <span id="countdown">60:00</span>
+                </div>
+                <!-- Đã đổi sang type="button" và modal tùy chỉnh để tránh trình duyệt chặn alert -->
+                <button type="button" class="btn-danger" id="submit-btn">Nộp bài</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Nội dung chính: 2 cột -->
+    <main class="exam-main">
+
+        <!-- Cột trái: Danh sách câu hỏi (chỉ ngăn cách bằng kẻ ngang) -->
+        <section class="question-list" id="questions-container">
+            <!-- Render câu hỏi bằng JS -->
+        </section>
+
+        <!-- Cột phải: Palette cố định -->
+        <aside class="question-palette">
+            <h3>Danh sách câu hỏi</h3>
+            <div class="palette-grid" id="palette-grid"></div>
+            <div class="palette-summary">
+                Đã trả lời: <strong id="answered-count" style="color:#0ca61e">0</strong> / <strong
+                    id="total-count">10</strong>
+            </div>
+            <!-- BẤM NỘP BÀI TRONG PALETTE DƯỚI DÒNG TRẢ LỜI -->
+            <button type="button" class="btn-danger" id="submit-btn-palette"
+                style="width: 100%; margin-top: 16px; padding: 12px; font-size: 15px; border-radius: 8px;">
+                Nộp bài
+            </button>
+        </aside>
+
+    </main>
+
+    <!-- Modal xác nhận nộp bài (Sạch và chuyên nghiệp hơn confirm mặc định) -->
+    <div id="submit-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h3>Xác nhận nộp bài</h3>
+            <p id="modal-message">Bạn có chắc chắn muốn nộp bài?</p>
+            <div class="modal-actions">
+                <button type="button" class="btn-secondary" id="cancel-submit">Hủy</button>
+                <button type="button" class="btn-danger" id="confirm-submit">Nộp bài ngay</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/exam-taking.js"></script>
+</body>
+
+</html>

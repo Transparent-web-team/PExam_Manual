@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tạo/Chỉnh sửa kỳ thi - PTIT Exam Admin</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/admin.css" />
+    <style>
+        /* CSS cục bộ cho riêng trang edit form */
+        .admin-grid {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 24px;
+            align-items: start;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-group label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #444;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+            outline: none;
+            transition: 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #d0200d;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            gap: 12px;
+        }
+
+        .excel-drop-zone {
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            padding: 24px;
+            text-align: center;
+            background: #fafafa;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: 0.2s;
+        }
+
+        .excel-drop-zone:hover {
+            background: #f0f4f8;
+            border-color: #00509C;
+        }
+
+        .excel-drop-zone p {
+            margin-bottom: 4px;
+            font-weight: 600;
+            color: #444;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-sm {
+            padding: 6px 12px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body class="admin-body">
+
+    <!-- ================= SIDEBAR ================= -->
+    <aside class="admin-sidebar">
+        <div class="admin-logo">
+            <img src="assets/logoptit.png" alt="Logo PTIT" class="admin-logo-img" />
+            <h2>PTIT EXAM</h2>
+            <span class="badge badge--red-outline">Admin Panel</span>
+        </div>
+
+        <nav class="admin-nav">
+            <a href="admin.html" class="nav-item">
+                Tổng quan
+            </a>
+            <!-- Active link ảo để user biết đang ở module nào -->
+            <a href="#" class="nav-item active">
+                Quản lý Kỳ thi
+            </a>
+        </nav>
+
+        <div class="admin-bottom-nav">
+            <button class="btn-logout" onclick="window.location.href='index.html'">Đăng xuất</button>
+        </div>
+    </aside>
+
+    <!-- ================= MAIN CONTENT ================= -->
+    <main class="admin-main">
+
+        <header class="admin-topbar">
+            <div class="topbar-left">
+                <h1 id="page-title-display">Biên tập Kỳ thi</h1>
+            </div>
+            <div class="topbar-right">
+                <!-- Đã ẩn avatar, thông tin rườm rà theo yêu cầu của người dùng -->
+            </div>
+        </header>
+
+        <div class="admin-content-area">
+
+            <div class="admin-grid">
+                <!-- ================= PANEL TRÁI: THÔNG TIN ================= -->
+                <section class="admin-card">
+                    <h2 style="margin-bottom: 20px;">Thông tin chung</h2>
+                    <div class="form-group">
+                        <label>Tên kỳ thi</label>
+                        <input type="text" id="exam-title" value="Thi cuối kỳ - Lập trình Web" />
+                    </div>
+                    <div class="form-group">
+                        <label>Mô tả ngắn</label>
+                        <textarea id="exam-desc" rows="3">Thi cuối kỳ môn Lập trình Web toàn diện</textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Loại kỳ thi</label>
+                            <select id="exam-type">
+                                <option>Luyện tập</option>
+                                <option>Giữa kỳ</option>
+                                <option selected>Cuối kỳ</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Thời lượng (phút)</label>
+                            <input type="number" id="exam-duration" value="60" />
+                        </div>
+                    </div>
+                    <div class="form-row" id="time-settings">
+                        <div class="form-group">
+                            <label>Bắt đầu mở</label>
+                            <input type="datetime-local" id="exam-start" value="2026-05-10T09:00" />
+                        </div>
+                        <div class="form-group">
+                            <label>Kết thúc</label>
+                            <input type="datetime-local" id="exam-end" value="2026-05-10T10:00" />
+                        </div>
+                    </div>
+
+                    <div class="form-group"
+                        style="flex-direction: row; align-items: center; gap: 8px; margin-top: 4px;">
+                        <input type="checkbox" id="exam-free"
+                            style="width: auto; accent-color: #d0200d; cursor: pointer;"
+                            onchange="toggleTimeSettings()">
+                        <label for="exam-free" style="margin-bottom: 0; cursor: pointer;">Kỳ thi tự do (Không giới hạn
+                            thời gian mở/đóng)</label>
+                    </div>
+
+                    <!-- Nút Lưu màu đỏ chữ trắng (Primary), Nút Hủy text-center có viền -->
+                    <button class="btn-primary"
+                        style="width: 100%; margin-top: 16px; padding: 12px; text-align: center; justify-content: center; display: flex; align-items: center; border-radius: 6px;"
+                        onclick="saveExam()">Lưu thay đổi</button>
+                    <button class="btn-secondary"
+                        style="width: 100%; margin-top: 8px; padding: 12px; background: transparent; color: #555; text-align: center; justify-content: center; display: flex; align-items: center; border-radius: 6px; border: 1px solid #ccc;"
+                        onclick="window.location.href='admin.html'">Hủy bỏ</button>
+                </section>
+
+                <!-- ================= PANEL PHẢI: CÂU HỎI ================= -->
+                <section class="admin-card text-center" style="display: flex; flex-direction: column;">
+                    <div class="card-header-flex" style="margin-bottom: 16px;">
+                        <h2>Danh sách câu hỏi (<span id="q-count">0</span>)</h2>
+                        <div class="card-actions">
+                            <button class="btn-primary btn-sm" onclick="importExcel()">Nhập Excel</button>
+                            <button class="btn-primary btn-sm" onclick="addQuestion()">+ Thêm câu</button>
+                        </div>
+                    </div>
+
+                    <div class="excel-drop-zone" id="excel-drop" onclick="importExcel()">
+                        <p>Kéo thả file Excel / CSV vào đây (Hoặc nhấp chuột)</p>
+                        <span style="font-size: 13px; color: #777;">Tự động phân tách Câu hỏi và Đáp án</span>
+                    </div>
+
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th width="50">STT</th>
+                                <th>Nội dung câu hỏi ngắn gọn</th>
+                                <th width="100">Đáp án ĐÚNG</th>
+                                <th width="120">Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody id="question-list">
+                            <!-- Generate bằng JS mock -->
+                            <tr>
+                                <td>1</td>
+                                <td>Ngôn ngữ nào định dạng giao diện trang web?</td>
+                                <td><strong>CSS</strong></td>
+                                <td>
+                                    <button class="btn-text">Sửa</button> |
+                                    <button class="btn-text" style="color:#d0200d;">Xóa</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Thẻ HTML nào dùng để tạo liên kết?</td>
+                                <td><strong>&lt;a&gt;</strong></td>
+                                <td>
+                                    <button class="btn-text">Sửa</button> |
+                                    <button class="btn-text" style="color:#d0200d;">Xóa</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" style="text-align: center; color: #777; padding: 24px;">
+                                    (Và 48 câu hỏi khác...)
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        function saveExam() {
+            alert("Đã lưu thông tin kỳ thi thành công!");
+            window.location.href = 'admin.html';
+        }
+        function importExcel() {
+            alert("Tính năng nhập Excel/CSV đang được xử lý...");
+        }
+        function addQuestion() {
+            alert("Mở popup thêm câu hỏi thủ công...");
+        }
+        // Gắn tổng số mock ban đầu
+        document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById("q-count").textContent = "50";
+        });
+
+        // Ẩn / Hiện thời gian bắt đầu và kết thúc khi chọn "Kỳ thi tự do"
+        function toggleTimeSettings() {
+            const isFree = document.getElementById("exam-free").checked;
+            const timeBox = document.getElementById("time-settings");
+            if (isFree) {
+                timeBox.style.display = 'none';
+            } else {
+                timeBox.style.display = 'grid'; // .form-row vốn là display: grid
+            }
+        }
+    </script>
+</body>
+
+</html>

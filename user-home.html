@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trang chính - Hệ thống thi trắc nghiệm PTIT</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body>
+  <header class="app-header">
+    <div class="app-header-inner">
+      <div class="app-header-left">
+        <img src="assets/logoptit.png" alt="Học viện Công nghệ Bưu chính Viễn thông" class="app-logo" />
+      </div>
+      <h1 class="app-title">HỆ THỐNG THI TRẮC NGHIỆM TRỰC TUYẾN PTIT</h1>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <span style="font-size:14px;color:#555;">Nguyễn Văn A &middot; B21DCCN001</span>
+        <button class="btn-danger" onclick="window.location.href='index.html'">Đăng xuất</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="home-main">
+    <section class="filters" aria-label="Tìm kiếm và lọc kỳ thi">
+      <h2 class="section-title">Tìm kiếm và lọc kỳ thi</h2>
+      <div class="filters-top-row">
+        <div class="filter-search">
+          <img src="assets/icons/search.svg" class="filter-icon">
+          <input type="search" id="search-input" placeholder="Tìm kiếm kỳ thi theo tên..." />
+        </div>
+        <div class="filter-select-group">
+          <div class="filter-select">
+            <img src="assets/icons/funnel.svg" class="filter-icon" />
+            <select id="type-filter">
+              <option value="all">Tất cả loại</option>
+              <option value="practice">Luyện tập</option>
+              <option value="midterm">Giữa kỳ</option>
+              <option value="final">Cuối kỳ</option>
+            </select>
+          </div>
+          <div class="filter-select">
+            <img src="assets/icons/funnel.svg" class="filter-icon" />
+            <select id="status-filter">
+              <option value="all">Tất cả trạng thái</option>
+              <option value="available">Có thể làm</option>
+              <option value="locked">Chưa khả dụng</option>
+              <option value="done">Đã hoàn thành</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <p class="filters-result-text">Tìm thấy 6 kỳ thi</p>
+    </section>
+
+    <section class="exam-list" aria-label="Danh sách kỳ thi">
+
+      <!-- Card 1: Luyện tập - Đã hoàn thành -->
+      <article class="exam-card exam-card--practice exam-card--done" data-type="practice" data-status="done">
+        <header class="exam-card-header">
+          <div class="badge-row">
+            <span class="badge badge--blue">Luyện tập</span>
+            <span class="badge badge--green-outline"><img src="assets/icons/lock-open.svg" alt="" class="badge-icon" />
+              Tự do</span>
+            <span class="badge badge--green-filled">Đã làm: 8/10</span>
+          </div>
+          <h2 class="exam-title">Luyện tập HTML &amp; CSS cơ bản</h2>
+          <p class="exam-subtitle">Bài thi luyện tập kiến thức cơ bản về HTML và CSS</p>
+        </header>
+        <div class="exam-meta">
+          <span><img src="assets/icons/clock.svg" alt="" class="icon-small" /> 30 phút</span>
+          <span><img src="assets/icons/book-open.svg" alt="" class="icon-small" /> 10 câu hỏi</span>
+          <span><img src="assets/icons/user.svg" alt="" class="icon-small" /> 100 người</span>
+          <span>Độ khó: <strong>Dễ</strong></span>
+        </div>
+        <div class="exam-footer-left">
+          <span class="exam-status exam-status--success"><img src="assets/icons/check.svg" alt="" class="icon-small" />
+            Đã hoàn thành</span>
+        </div>
+        <div class="exam-footer">
+          <button class="btn-primary-outline" onclick="window.location.href='exam-taking.html'">
+            <img src="assets/icons/play.svg" alt="" class="icon-small" />
+            Làm lại
+          </button>
+        </div>
+      </article>
+
+      <!-- Card 2: Luyện tập - Có thể làm -->
+      <article class="exam-card exam-card--practice" data-type="practice" data-status="available">
+        <header class="exam-card-header">
+          <div class="badge-row">
+            <span class="badge badge--blue">Luyện tập</span>
+            <span class="badge badge--green-outline"><img src="assets/icons/lock-open.svg" alt="" class="badge-icon" />
+              Tự do</span>
+          </div>
+          <h2 class="exam-title">Luyện tập HTML &amp; CSS nâng cao</h2>
+          <p class="exam-subtitle">Bài thi luyện tập kiến thức nâng cao về HTML và CSS</p>
+        </header>
+        <div class="exam-meta">
+          <span><img src="assets/icons/clock.svg" alt="" class="icon-small" /> 45 phút</span>
+          <span><img src="assets/icons/book-open.svg" alt="" class="icon-small" /> 10 câu hỏi</span>
+          <span><img src="assets/icons/user.svg" alt="" class="icon-small" /> 60 người</span>
+          <span>Độ khó: <strong>Trung bình</strong></span>
+        </div>
+        <div class="exam-footer">
+          <button class="btn-primary-outline" onclick="window.location.href='exam-taking.html'">
+            <img src="assets/icons/play.svg" alt="" class="icon-small" /> Bắt đầu
+          </button>
+        </div>
+      </article>
+
+      <!-- Card 3: Luyện tập JavaScript - Đã hoàn thành -->
+      <article class="exam-card exam-card--practice exam-card--done" data-type="practice" data-status="done">
+        <header class="exam-card-header">
+          <div class="badge-row">
+            <span class="badge badge--blue">Luyện tập</span>
+            <span class="badge badge--green-outline"><img src="assets/icons/lock-open.svg" alt="" class="badge-icon" />
+              Tự do</span>
+            <span class="badge badge--green-filled">Đã làm: 6/10</span>
+          </div>
+          <h2 class="exam-title">Luyện tập JavaScript cơ bản</h2>
+          <p class="exam-subtitle">Bài thi luyện tập kiến thức JavaScript: biến, hàm, vòng lặp</p>
+        </header>
+        <div class="exam-meta">
+          <span><img src="assets/icons/clock.svg" alt="" class="icon-small" /> 30 phút</span>
+          <span><img src="assets/icons/book-open.svg" alt="" class="icon-small" /> 10 câu hỏi</span>
+          <span><img src="assets/icons/user.svg" alt="" class="icon-small" /> 75 người</span>
+          <span>Độ khó: <strong>Dễ</strong></span>
+        </div>
+        <div class="exam-footer-left">
+          <span class="exam-status exam-status--success"><img src="assets/icons/check.svg" alt="" class="icon-small" />
+            Đã hoàn thành</span>
+        </div>
+        <div class="exam-footer">
+          <button class="btn-primary-outline" onclick="window.location.href='exam-taking.html'">
+            <img src="assets/icons/play.svg" alt="" class="icon-small" />
+            Làm lại
+          </button>
+        </div>
+      </article>
+
+      <!-- Card 4: Luyện tập - Có thể làm -->
+      <article class="exam-card exam-card--practice" data-type="practice" data-status="available">
+        <header class="exam-card-header">
+          <div class="badge-row">
+            <span class="badge badge--blue">Luyện tập</span>
+            <span class="badge badge--green-outline"><img src="assets/icons/lock-open.svg" alt="" class="badge-icon" />
+              Tự do</span>
+          </div>
+          <h2 class="exam-title">Luyện tập Mạng máy tính</h2>
+          <p class="exam-subtitle">Ôn tập kiến thức giao thức TCP/IP, HTTP, DNS</p>
+        </header>
+        <div class="exam-meta">
+          <span><img src="assets/icons/clock.svg" alt="" class="icon-small" /> 30 phút</span>
+          <span><img src="assets/icons/book-open.svg" alt="" class="icon-small" /> 10 câu hỏi</span>
+          <span><img src="assets/icons/user.svg" alt="" class="icon-small" /> 40 người</span>
+          <span>Độ khó: <strong>Trung bình</strong></span>
+        </div>
+        <div class="exam-footer">
+          <button class="btn-primary-outline" onclick="window.location.href='exam-taking.html'">
+            <img src="assets/icons/play.svg" alt="" class="icon-small" /> Bắt đầu
+          </button>
+        </div>
+      </article>
+
+      <!-- Card 5: Giữa kỳ - Chưa mở -->
+      <article class="exam-card exam-card--midterm exam-card--locked" data-type="midterm" data-status="locked">
+        <header class="exam-card-header">
+          <div class="badge-row">
+            <span class="badge badge--yellow">Giữa kỳ</span>
+            <span class="badge badge--orange-outline"><img src="assets/icons/lock.svg" alt="" class="badge-icon" /> Có
+              lịch</span>
+          </div>
+          <h2 class="exam-title">Thi giữa kỳ - Lập trình Web</h2>
+          <p class="exam-subtitle">Thi giữa kỳ môn Lập trình Web toàn diện</p>
+        </header>
+        <div class="exam-meta">
+          <span><img src="assets/icons/clock.svg" alt="" class="icon-small" /> 60 phút</span>
+          <span><img src="assets/icons/book-open.svg" alt="" class="icon-small" /> 10 câu hỏi</span>
+          <span><img src="assets/icons/user.svg" alt="" class="icon-small" /> 0 người</span>
+          <span>Độ khó: <strong>Trung bình</strong></span>
+        </div>
+        <div class="exam-time-box">
+          <div>
+            <div><img src="assets/icons/calendar.svg" alt="" class="icon-small" /> Bắt đầu: <strong>09:00,
+                10/03/2026</strong></div>
+            <div><img src="assets/icons/calendar.svg" alt="" class="icon-small" /> Kết thúc: <strong>10:00,
+                10/03/2026</strong></div>
+          </div>
+          <span class="exam-status exam-status--muted">Chưa khả dụng</span>
+        </div>
+        <div class="exam-footer">
+          <button class="btn-secondary" disabled>
+            <img src="assets/icons/play.svg" alt="" class="icon-small" />
+            Bắt đầu
+          </button>
+        </div>
+      </article>
+
+      <!-- Card 6: Cuối kỳ - Chưa mở -->
+      <article class="exam-card exam-card--final exam-card--locked" data-type="final" data-status="locked">
+        <header class="exam-card-header">
+          <div class="badge-row">
+            <span class="badge badge--red-outline">Cuối kỳ</span>
+            <span class="badge badge--orange-outline"><img src="assets/icons/lock.svg" alt="" class="badge-icon" /> Có
+              lịch</span>
+          </div>
+          <h2 class="exam-title">Thi cuối kỳ - Lập trình Web</h2>
+          <p class="exam-subtitle">Thi cuối kỳ môn Lập trình Web toàn diện</p>
+        </header>
+        <div class="exam-meta">
+          <span><img src="assets/icons/clock.svg" alt="" class="icon-small" /> 60 phút</span>
+          <span><img src="assets/icons/book-open.svg" alt="" class="icon-small" /> 10 câu hỏi</span>
+          <span><img src="assets/icons/user.svg" alt="" class="icon-small" /> 0 người</span>
+          <span>Độ khó: <strong>Khó</strong></span>
+        </div>
+        <div class="exam-time-box exam-time-box--warning">
+          <div>
+            <div><img src="assets/icons/calendar.svg" alt="" class="icon-small" /> Bắt đầu: <strong>09:00,
+                10/05/2026</strong></div>
+            <div><img src="assets/icons/calendar.svg" alt="" class="icon-small" /> Kết thúc: <strong>10:00,
+                10/05/2026</strong></div>
+          </div>
+          <span class="exam-status exam-status--muted">Chưa khả dụng</span>
+        </div>
+        <div class="exam-footer">
+          <button class="btn-secondary" disabled>
+            <img src="assets/icons/play.svg" alt="" class="icon-small" />
+            Bắt đầu
+          </button>
+        </div>
+      </article>
+
+    </section>
+  </main>
+
+  <script src="assets/js/user-home.js"></script>
+</body>
+
+</html>
