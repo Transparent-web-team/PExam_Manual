@@ -7,14 +7,28 @@
   <title>Trang Quản Trị - PTIT Exam</title>
   <!-- Link chung CSS của hệ thống trước -->
   <link rel="stylesheet" href="assets/css/style.css">
-  <!-- Link CSS dành riêng cho Admin -->
   <link rel="stylesheet" href="assets/css/admin.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+  <style>
+    /* Ẩn nút hamburger trên desktop */
+    .btn-hamburger { display: none; }
+    @media (max-width: 768px) { .btn-hamburger { display: flex; } }
+    /* Ẩn nút ✕ trên desktop */
+    .btn-close-nav { display: none; }
+    @media (max-width: 768px) { .btn-close-nav { display: flex; } }
+  </style>
 </head>
 
 <body class="admin-body">
 
-  <!-- ================= SIDEBAR ================= -->
-  <aside class="admin-sidebar">
+  <!-- Overlay tối khi drawer mở — bấm vào để đóng -->
+  <div class="nav-overlay" id="nav-overlay" onclick="closeNav()"></div>
+
+  <!-- ================= SIDEBAR / DRAWER ================= -->
+  <aside class="admin-sidebar" id="admin-sidebar">
+    <!-- Nút ✕ đóng drawer, chỉ hiện trên mobile -->
+    <button class="btn-close-nav" onclick="closeNav()" aria-label="Đóng menu">✕</button>
+
     <div class="admin-logo">
       <img src="assets/logoptit.png" alt="Logo PTIT" class="admin-logo-img" />
       <h2>PTIT EXAM</h2>
@@ -38,6 +52,10 @@
     <!-- Topbar chung cho Admin -->
     <header class="admin-topbar">
       <div class="topbar-left">
+        <!-- Nút ☰ chỉ hiện trên mobile/tablet -->
+        <button class="btn-hamburger" onclick="openNav()" aria-label="Mở menu">
+          <span></span><span></span><span></span>
+        </button>
         <h1 id="page-title-display">Tổng quan hệ thống</h1>
       </div>
       <div class="topbar-right">
@@ -160,25 +178,25 @@
               <tr>
                 <td>B21DCCN001</td>
                 <td>Nguyễn Văn A</td>
-                <td><strong style="color:var(--ptit-red)">9.5</strong></td>
+                <td><strong style="color:#d0200d">9.5</strong></td>
                 <td>45 phút</td>
               </tr>
               <tr>
                 <td>B21DCCN023</td>
                 <td>Trần Thị B</td>
-                <td><strong style="color:var(--ptit-red)">9.0</strong></td>
+                <td><strong style="color:#d0200d">9.0</strong></td>
                 <td>48 phút</td>
               </tr>
               <tr>
                 <td>B21DCCN105</td>
                 <td>Lê Hoàng C</td>
-                <td><strong style="color:var(--ptit-red)">8.8</strong></td>
+                <td><strong style="color:#d0200d">8.8</strong></td>
                 <td>50 phút</td>
               </tr>
               <tr>
                 <td>B21DCCN442</td>
                 <td>Phạm Quyết D</td>
-                <td><strong style="color:var(--ptit-red)">8.5</strong></td>
+                <td><strong style="color:#d0200d">8.5</strong></td>
                 <td>55 phút</td>
               </tr>
             </tbody>
@@ -319,17 +337,23 @@
       'results': 'Quản lý Sinh viên & Kết quả'
     };
 
+    function openNav() {
+      document.getElementById('admin-sidebar').classList.add('open');
+      document.getElementById('nav-overlay').classList.add('open');
+    }
+
+    function closeNav() {
+      document.getElementById('admin-sidebar').classList.remove('open');
+      document.getElementById('nav-overlay').classList.remove('open');
+    }
+
     function showPage(pageId) {
-      // Đổi nội dung
       document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
       document.getElementById(pageId).classList.add('active');
-
-      // Đổi menu logic
       document.querySelectorAll('.nav-item').forEach(link => link.classList.remove('active'));
       document.getElementById('link-' + pageId).classList.add('active');
-
-      // Đổi tiêu đề Topbar
       document.getElementById('page-title-display').textContent = pageTitles[pageId];
+      closeNav(); // tự đóng drawer sau khi chọn trang
     }
 
     function filterStudents() {
@@ -337,36 +361,19 @@
       const rows = document.querySelectorAll('.student-row');
       const noResultRow = document.getElementById('no-result-row');
       let hasVisibleRow = false;
-
       rows.forEach(row => {
-        // Lấy toàn bộ text của dòng hiện tại (bao gồm cả mã SV, tên, lớp)
-        const rowText = row.innerText.toLowerCase();
-
-        // Kiểm tra xem input có nằm trong các chữ của dòng không
-        if (rowText.includes(input)) {
-          row.style.display = '';
-          hasVisibleRow = true;
-        } else {
-          row.style.display = 'none';
-        }
+        const match = row.innerText.toLowerCase().includes(input);
+        row.style.display = match ? '' : 'none';
+        if (match) hasVisibleRow = true;
       });
-
-      // Hiển thị dòng thông báo "Không tìm thấy" nếu không có dòng nào hiển thị
-      if (hasVisibleRow) {
-        noResultRow.style.display = 'none';
-      } else {
-        noResultRow.style.display = '';
-      }
+      noResultRow.style.display = hasVisibleRow ? 'none' : '';
     }
 
-    // Hiển thị bảng Xem điểm
     function showStudentResult(studentId, studentName) {
-      document.getElementById('resultArea').style.display = 'block';
-      document.getElementById('resultArea').scrollIntoView({ behavior: 'smooth' });
-
-      // Update thông tin Header của bảng
-      const headerTitle = document.querySelector('#resultArea h3');
-      headerTitle.textContent = `Hồ sơ: ${studentName} (${studentId})`;
+      const area = document.getElementById('resultArea');
+      area.style.display = 'block';
+      area.scrollIntoView({ behavior: 'smooth' });
+      document.querySelector('#resultArea h3').textContent = `Hồ sơ: ${studentName} (${studentId})`;
     }
   </script>
 </body>

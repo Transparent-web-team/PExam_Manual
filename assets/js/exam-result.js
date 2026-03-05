@@ -2,7 +2,7 @@
 
 const allQuestions = [
     { id: 1, text: "Ngôn ngữ nào định dạng giao diện trang web?", options: ["HTML", "CSS", "JavaScript", "PHP"], correct: 1 },
-    { id: 2, text: "Thẻ HTML nào dùng để tạo liên kết?", options: ["<a>", "<link>", "<p>", "<href>"], correct: 0 },
+    { id: 2, text: "Thẻ HTML nào dùng để tạo liên kết?", options: ["a", "link", "p", "href"], correct: 0 },
     { id: 3, text: "CSS là viết tắt của từ gì?", options: ["Cascading Style Sheets", "Computer Style Sheets", "Creative Style Sheets", "Colorful Style Sheets"], correct: 0 },
     { id: 4, text: "Từ khóa nào khai báo biến trong JavaScript không thể thay đổi giá trị?", options: ["var", "let", "const", "static"], correct: 2 },
     { id: 5, text: "Đâu là một Framework của JavaScript?", options: ["React", "Laravel", "Django", "Spring"], correct: 0 },
