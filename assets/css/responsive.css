@@ -1,16 +1,6 @@
-/* ============================================================
-   RESPONSIVE.CSS — PTIT Exam
-   Breakpoints:
-     Tablet : max-width 768px
-     Mobile : max-width 480px
-   ============================================================ */
-
-/* ============================================================
-   DRAWER ADMIN + MỌI TRANG (≤ 768px)
-   ============================================================ */
 @media (max-width: 768px) {
 
-  /* ── Admin: layout gốc bỏ flex ngang ── */
+  /*Admin*/
   .admin-body {
     display: block;
     height: 100vh;
@@ -25,7 +15,7 @@
     flex-direction: column;
   }
 
-  /* ── Sidebar thành drawer, ẩn sang trái ── */
+  /* Sidebar thành drawer*/
   .admin-sidebar {
     position: fixed;
     top: 0;
@@ -45,7 +35,7 @@
     left: 0;
   }
 
-  /* ── Overlay tối phía sau ── */
+  /* Overlay tối phía sau */
   .nav-overlay {
     display: none;
     position: fixed;
@@ -59,7 +49,7 @@
     display: block;
   }
 
-  /* ── Nút ☰ trong topbar ── */
+  /* Nút ☰ trong topbar */
   .btn-hamburger {
     display: flex;
     flex-direction: column;
@@ -81,7 +71,7 @@
     border-radius: 2px;
   }
 
-  /* ── Nút ✕ bên trong drawer ── */
+  /* Nút ✕ bên trong drawer */
   .btn-close-nav {
     display: flex;
     align-self: flex-end;
@@ -96,7 +86,7 @@
 
   .btn-close-nav:hover { color: #d0200d; }
 
-  /* Nav items trong drawer ── */
+  /* Nav items trong drawer */
   .admin-nav .nav-item {
     padding: 14px 16px;
     font-size: 15px;
@@ -104,7 +94,7 @@
     width: 100%;
   }
 
-  /* ── Topbar ── */
+  /* Topbar */
   .admin-topbar {
     padding: 0 16px;
     height: 56px;
@@ -118,7 +108,7 @@
     gap: 4px;
   }
 
-  /* ── Content ── */
+  /* Content */
   .admin-content-area { padding: 16px 12px; }
 
   .stats-grid {
@@ -157,13 +147,13 @@
 
   .pagination { flex-wrap: wrap; gap: 4px; }
 
-  /* ── USER HOME ── */
+  /* USER HOME */
   .home-main { padding: 16px 12px 60px; }
   .exam-list { grid-template-columns: 1fr; }
   .filters-top-row  { flex-direction: column; }
   .filter-select-group { flex-wrap: wrap; }
 
-  /* ── HEADER (trang user) ── */
+  /* HEADER (trang user) */
   .app-header-inner {
     grid-template-columns: auto 1fr auto;
     padding: 10px 16px;
@@ -173,7 +163,7 @@
   .app-title { font-size: 14px; text-align: center; }
   .app-logo  { height: 36px; }
 
-  /* ── EXAM TAKING ── */
+  /* EXAM TAKING */
   .exam-main {
     grid-template-columns: 1fr;
     padding: 20px 12px 80px;
@@ -192,7 +182,7 @@
   .exam-title-header span { font-size: 11px; }
   .timer-box { font-size: 14px; padding: 6px 12px; }
 
-  /* ── EXAM RESULT ── */
+  /* EXAM RESULT */
   .result-main    { padding: 24px 12px; gap: 20px; }
   .result-summary { padding: 24px 16px; }
   .score-circle   { width: 130px; height: 130px; }
@@ -206,9 +196,7 @@
 }
 
 
-/* ============================================================
-   MOBILE (≤ 480px)
-   ============================================================ */
+/* MOBILE (≤ 480px) */
 @media (max-width: 480px) {
 
   .app-title  { font-size: 12px; }
@@ -244,25 +232,23 @@
   .exam-meta  { grid-template-columns: 1fr 1fr; font-size: 12px; }
 }
 
-/* ============================================================
-   FIX: Nút đăng xuất luôn hiển thị trong drawer mobile
-   ============================================================ */
+/* Nút đăng xuất trong drawer */
 @media (max-width: 768px) {
-  /* Bỏ flex: 1 để nav không chiếm hết chiều cao drawer */
   .admin-sidebar .admin-nav {
     flex: 0 0 auto;
   }
 
-  /* Đẩy logout xuống đáy drawer bằng margin-top: auto */
   .admin-sidebar .admin-bottom-nav {
-    margin-top: auto;
-    border-top: 1px solid #f0f0f0;
-    padding: 16px;
+    margin-top: 8px;
+    border-top: none;
+    padding: 0 16px;
   }
 
   .admin-sidebar .btn-logout {
     width: 100%;
-    padding: 12px;
+    padding: 14px 16px;
     border-radius: 8px;
+    text-align: left;
+    font-size: 15px;
   }
 }

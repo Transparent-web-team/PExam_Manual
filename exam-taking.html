@@ -26,7 +26,6 @@
                     <img src="assets/icons/clock.svg" alt="" class="timer-icon" />
                     <span id="countdown">60:00</span>
                 </div>
-                <!-- Đã đổi sang type="button" và modal tùy chỉnh để tránh trình duyệt chặn alert -->
                 <button type="button" class="btn-danger" id="submit-btn">Nộp bài</button>
             </div>
         </div>
@@ -35,7 +34,7 @@
     <!-- Nội dung chính: 2 cột -->
     <main class="exam-main">
 
-        <!-- Cột trái: Danh sách câu hỏi (chỉ ngăn cách bằng kẻ ngang) -->
+        <!-- Cột trái: Danh sách câu hỏi-->
         <section class="question-list" id="questions-container">
             <!-- Render câu hỏi bằng JS -->
         </section>
@@ -48,7 +47,7 @@
                 Đã trả lời: <strong id="answered-count" style="color:#0ca61e">0</strong> / <strong
                     id="total-count">10</strong>
             </div>
-            <!-- BẤM NỘP BÀI TRONG PALETTE DƯỚI DÒNG TRẢ LỜI -->
+            <!-- BẤM NỘP BÀI TRONG PALETTE -->
             <button type="button" class="btn-danger" id="submit-btn-palette"
                 style="width: 100%; margin-top: 16px; padding: 12px; font-size: 15px; border-radius: 8px;">
                 Nộp bài
@@ -57,7 +56,7 @@
 
     </main>
 
-    <!-- Modal xác nhận nộp bài (Sạch và chuyên nghiệp hơn confirm mặc định) -->
+    <!-- Modal xác nhận nộp bài -->
     <div id="submit-modal" class="modal-overlay hidden">
         <div class="modal-content">
             <h3>Xác nhận nộp bài</h3>

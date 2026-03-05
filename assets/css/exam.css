@@ -1,6 +1,4 @@
-/* exam.css - Code tối giản, chuyên nghiệp */
-
-/* Header giữ nguyên vị trí trên cùng */
+/*Header*/
 .exam-header {
   position: sticky;
   top: 0;
@@ -33,7 +31,7 @@
   align-items: center;
   gap: 16px;
   margin-left: auto;
-  /* Đẩy sát rạt sang phải */
+
 }
 
 .timer-box {
@@ -54,7 +52,7 @@
   height: 18px;
 }
 
-/* Bố cục chính: Dùng Grid ép 2 cột tĩnh, KHÔNG bao giờ rơi dòng */
+/*Bố cục chính*/
 .exam-main {
   display: grid;
   grid-template-columns: 1fr 280px;
@@ -64,7 +62,7 @@
   padding: 30px 20px 80px;
 }
 
-/* ================== Cột trái (Danh sách câu hỏi) ================== */
+/*Cột trái (Danh sách câu hỏi)*/
 .question-list {
   flex: 1;
   display: flex;
@@ -135,7 +133,7 @@
   flex-shrink: 0;
 }
 
-/* ================== Cột phải (Palette cố định) ================== */
+/*Cột phải (Palette cố định)*/
 .question-palette {
   width: 280px;
   flex-shrink: 0;
@@ -188,7 +186,6 @@
 
 .palette-btn.marked {
   background-color: #ff9800;
-  /* Màu cam nổi bật */
   color: #fff;
   border-color: #ff9800;
 }
