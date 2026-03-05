@@ -9,13 +9,9 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <!-- Link CSS dành riêng cho Admin -->
   <link rel="stylesheet" href="assets/css/admin.css">
-  <link rel="stylesheet" href="assets/css/responsive.css">
 </head>
 
 <body class="admin-body">
-
-  <!-- Lớp phủ tối khi mở drawer trên mobile -->
-  <div class="nav-overlay" id="nav-overlay" onclick="closeNav()"></div>
 
   <!-- ================= SIDEBAR ================= -->
   <aside class="admin-sidebar">
@@ -26,9 +22,9 @@
     </div>
 
     <nav class="admin-nav">
-      <a href="#" onclick="showPage('dashboard')" class="nav-item active" id="link-dashboard">Tổng quan</a>
-      <a href="#" onclick="showPage('statistics')" class="nav-item" id="link-statistics">Thống kê</a>
-      <a href="#" onclick="showPage('results')" class="nav-item" id="link-results">Quản lý Sinh viên</a>
+      <a href="javascript:void(0)" onclick="showPage('dashboard')" class="nav-item active" id="link-dashboard">Tổng quan</a>
+      <a href="javascript:void(0)" onclick="showPage('statistics')" class="nav-item" id="link-statistics">Thống kê</a>
+      <a href="javascript:void(0)" onclick="showPage('results')" class="nav-item" id="link-results">Quản lý Sinh viên</a>
     </nav>
 
     <div class="admin-bottom-nav">
@@ -41,11 +37,7 @@
 
     <!-- Topbar chung cho Admin -->
     <header class="admin-topbar">
-      <div class="topbar-left" style="display:flex;align-items:center;gap:8px;">
-        <!-- Nút hamburger chỉ hiện trên mobile -->
-        <button class="btn-hamburger" id="btn-hamburger" onclick="openNav()" aria-label="Mở menu">
-          <span></span><span></span><span></span>
-        </button>
+      <div class="topbar-left">
         <h1 id="page-title-display">Tổng quan hệ thống</h1>
       </div>
       <div class="topbar-right">
@@ -320,23 +312,7 @@
     </div>
   </main>
 
-  <style>
-    /* Nút hamburger chỉ hiện trên mobile */
-    .btn-hamburger { display: none; }
-    @media (max-width: 480px) {
-      .btn-hamburger { display: flex; }
-    }
-  </style>
   <script>
-    function openNav() {
-      document.querySelector('.admin-nav').classList.add('open');
-      document.getElementById('nav-overlay').classList.add('open');
-    }
-    function closeNav() {
-      document.querySelector('.admin-nav').classList.remove('open');
-      document.getElementById('nav-overlay').classList.remove('open');
-    }
-
     const pageTitles = {
       'dashboard': 'Tổng quan hệ thống',
       'statistics': 'Báo cáo Thống kê',
@@ -344,12 +320,16 @@
     };
 
     function showPage(pageId) {
+      // Đổi nội dung
       document.querySelectorAll('.page-section').forEach(sec => sec.classList.remove('active'));
       document.getElementById(pageId).classList.add('active');
+
+      // Đổi menu logic
       document.querySelectorAll('.nav-item').forEach(link => link.classList.remove('active'));
       document.getElementById('link-' + pageId).classList.add('active');
+
+      // Đổi tiêu đề Topbar
       document.getElementById('page-title-display').textContent = pageTitles[pageId];
-      closeNav(); // Tự đóng drawer sau khi chọn trang
     }
 
     function filterStudents() {
@@ -357,8 +337,12 @@
       const rows = document.querySelectorAll('.student-row');
       const noResultRow = document.getElementById('no-result-row');
       let hasVisibleRow = false;
+
       rows.forEach(row => {
+        // Lấy toàn bộ text của dòng hiện tại (bao gồm cả mã SV, tên, lớp)
         const rowText = row.innerText.toLowerCase();
+
+        // Kiểm tra xem input có nằm trong các chữ của dòng không
         if (rowText.includes(input)) {
           row.style.display = '';
           hasVisibleRow = true;
@@ -366,13 +350,23 @@
           row.style.display = 'none';
         }
       });
-      noResultRow.style.display = hasVisibleRow ? 'none' : '';
+
+      // Hiển thị dòng thông báo "Không tìm thấy" nếu không có dòng nào hiển thị
+      if (hasVisibleRow) {
+        noResultRow.style.display = 'none';
+      } else {
+        noResultRow.style.display = '';
+      }
     }
 
+    // Hiển thị bảng Xem điểm
     function showStudentResult(studentId, studentName) {
       document.getElementById('resultArea').style.display = 'block';
       document.getElementById('resultArea').scrollIntoView({ behavior: 'smooth' });
-      document.querySelector('#resultArea h3').textContent = `Hồ sơ: ${studentName} (${studentId})`;
+
+      // Update thông tin Header của bảng
+      const headerTitle = document.querySelector('#resultArea h3');
+      headerTitle.textContent = `Hồ sơ: ${studentName} (${studentId})`;
     }
   </script>
 </body>

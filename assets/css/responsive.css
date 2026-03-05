@@ -340,20 +340,30 @@
     flex-direction: column;
     padding: 24px 16px;
     gap: 8px;
-    z-index: 9999;
+    z-index: 10000;
     box-shadow: 2px 0 12px rgba(0,0,0,0.12);
+    overflow-y: auto;
   }
 
   .admin-nav.open {
     display: flex;
   }
 
+  /* Nav item trong drawer to hơn, dễ bấm trên mobile */
+  .admin-nav .nav-item {
+    padding: 14px 16px;
+    font-size: 15px;
+    border-radius: 8px;
+    display: block;
+    width: 100%;
+  }
+
   .nav-overlay {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.4);
-    z-index: 9998;
+    background: rgba(0,0,0,0.45);
+    z-index: 9999;
   }
 
   .nav-overlay.open {
@@ -363,12 +373,14 @@
   .btn-hamburger {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 5px;
     background: none;
     border: none;
     cursor: pointer;
-    padding: 6px;
-    margin-right: 8px;
+    padding: 8px;
+    margin-right: 4px;
+    flex-shrink: 0;
   }
 
   .btn-hamburger span {
